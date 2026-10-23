@@ -1,8 +1,14 @@
 import sys
-import pygame
+from zoneinfo import available_timezones
 
-from settings import Settings
+import pygame
 from ship import Ship
+from settings import Settings
+from bullet import Bullet
+from alien import Alien
+from big_star import Star
+from random import randint
+
 
 class AlienInvasion:
     """Класс для управления ресурсами и поведением игры"""
@@ -11,25 +17,128 @@ class AlienInvasion:
         """Инициализирует игру и создает игровые ресурсы"""
         pygame.init()
         self.settings = Settings()
-        self.screen = pygame.display.set_mode(
-            (self.settings.screen_width,self.settings.screen_height))
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
-        # Назначение цвета фона
-        self.bg_color = (230, 230, 230)
+        self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+        self.stars = pygame.sprite.Group()
+        self._create_fleet()
+        self._create_star_sky()
 
     def run_game(self):
         """Запуск основного цикла игры."""
         while True:
-            # Отслеживание событий клавиатуры и мыши.
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-            # При каждом проходе цикла перерисовывается экран.
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
-            # Отображение последнего прорисованного экрана.
-            pygame.display.flip()
+            print(len(self.bullets))
+            self._check_events()
+            self._update_ship()
+            self._update_bullets()
+            self._update_screen()
+
+    def _check_events(self):
+        # Отслеживание событий клавиатуры и мыши.
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()  # Корректно закрывает программу
+            elif event.type == pygame.KEYDOWN:  # Клавиша нажата
+                print(event.key)
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = True
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
+                elif event.key == pygame.K_UP:
+                    self.ship.moving_up = True
+                elif event.key == pygame.K_DOWN:
+                    self.ship.moving_down = True
+                elif event.key == pygame.K_ESCAPE:
+                    sys.exit()  # Корректно закрывает программу
+                elif event.key == pygame.K_SPACE:
+                    self._fire_bullet()
+            elif event.type == pygame.KEYUP:  # Клавиша не нажата
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
+                elif event.key == pygame.K_UP:
+                    self.ship.moving_up = False
+                elif event.key == pygame.K_DOWN:
+                    self.ship.moving_down = False
+
+    def _fire_bullet(self):
+        """Создание нового снаряда и выключение в группу bullets"""
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+
+    def _update_ship(self):
+        self.ship.update()
+
+    def _update_bullets(self):
+        """Обновляет позиции снарядов и уничтожает старые снаряды"""
+        # Обновление позиции снарядов.
+        self.bullets.update()
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+
+    def _create_fleet(self):
+        """рассчитывает ширину, свободное место и запускает цикл."""
+        alien_test = Alien(self)  # Создание ТЕСТОВОГО экземпляра
+        alien_width, alien_height = alien_test.rect.size  # Ширина пришельца
+        available_space_x = self.settings.screen_width - (2 * alien_width)  # Вычисление доступного расстояния
+        number_aliens_x = available_space_x // (2 * alien_width)  # Кол-во пришельцев
+        """Определяет количество рядов, помещающися на экране"""
+        ship_height = self.ship.rect.height  # Высота корабля
+        # Свободное пространство (кол-во пикселей)
+        availabe_space_y = self.settings.screen_height - (3 * alien_height) - ship_height
+        # Количество рядов
+        number_rows = availabe_space_y // (2 * alien_height)
+        # Создание флота вторжения.
+        for row_number in range(number_rows):  # Перебираем список пришельцев(кол-во)
+            for alien_number in range(number_aliens_x):
+                self._create_alien(alien_number, row_number)
+
+    def _create_alien(self, alien_number, row_number):
+        """только за создание одного пришельца и добавление его в группу"""
+        alien = Alien(self)  # Создание боевого пришельца
+        alien_width, alien_height = alien.rect.size  # узнаем его габариты
+        alien.rect.x = alien_width + (2 * alien_width * alien_number)
+        alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+        self.aliens.add(alien)
+
+    def _create_star_sky(self):
+        star_test = Star(self)  # Создание экземпляра star
+        star_width, star_height = star_test.rect.size  # Габариты звезды
+        available_space_x = self.settings.screen_height  # Свободное пространство по оси x
+        available_space_y = self.settings.screen_width  # Свободное пространство по оси y
+        row_nubmer = available_space_y // (1 * star_height) # Количество по y
+        number_star_x = available_space_x // (1 * star_width) # Кол-во звезв по горизотали x
+        for row in range(row_nubmer):
+            for number in range(number_star_x):
+                self._create_star(row, number)
+
+    def _create_star(self, star_number, row_number):
+        star = Star(self)  # Создание экземпляра star
+        random_number = randint(-10, 10)
+        star_width, star_height = star.rect.size  # Узнаем габариты
+        available_space_x = self.settings.screen_height  # Свободное пространство по оси x
+        available_space_y = self.settings.screen_width
+        star.rect.x = random_number + (2 * star_width * star_number)
+        star.rect.y = random_number + (2 * star_height * row_number)
+        self.stars.add(star)
+
+    def _update_screen(self):
+        # При каждом проходе цикла перерисовывается экран.
+        self.screen.fill(self.settings.bg_color)
+        self.stars.draw(self.screen)
+        self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+        self.aliens.draw(self.screen)
+        # Отображение последнего прорисованного экрана.
+        pygame.display.flip()
+
+
 if __name__ == '__main__':
     # Создание экземпляра и запуск игры.
     ai = AlienInvasion()
