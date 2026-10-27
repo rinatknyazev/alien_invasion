@@ -7,7 +7,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.venv_geg" />
       <excludeFolder url="file://$MODULE_DIR$/.venv_1" />
     </content>
-    <orderEntry type="jdk" jdkName="~\Desktop\alien_invasion\.venv_1" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="~/PycharmProjects/alien_invasion/.venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

@@ -1,13 +1,13 @@
 import sys
 from zoneinfo import available_timezones
 
+from random import randint
 import pygame
 from ship import Ship
 from settings import Settings
 from bullet import Bullet
 from alien import Alien
 from big_star import Star
-from random import randint
 
 
 class AlienInvasion:
@@ -33,6 +33,7 @@ class AlienInvasion:
             self._check_events()
             self._update_ship()
             self._update_bullets()
+            self.stars.update()
             self._update_screen()
 
     def _check_events(self):
@@ -107,24 +108,28 @@ class AlienInvasion:
         self.aliens.add(alien)
 
     def _create_star_sky(self):
-        star_test = Star(self)  # Создание экземпляра star
+        star_test = Star(self)  # Тестовая звезд, чтобы узнать размеры.
         star_width, star_height = star_test.rect.size  # Габариты звезды
-        available_space_x = self.settings.screen_height  # Свободное пространство по оси x
-        available_space_y = self.settings.screen_width  # Свободное пространство по оси y
-        row_nubmer = available_space_y // (1 * star_height) # Количество по y
-        number_star_x = available_space_x // (1 * star_width) # Кол-во звезв по горизотали x
-        for row in range(row_nubmer):
+        # X - это ширина, Y - высота
+        available_space_x = self.settings.screen_width
+        available_space_y = self.settings.screen_height
+        # Считаем сколько звезд поместится
+        number_star_x = available_space_x // (2 * star_width)
+        row_number = available_space_y // (2 * star_height)
+        # Запускаем вложенные циклы
+        for row in range(row_number):
             for number in range(number_star_x):
-                self._create_star(row, number)
+                self._create_star(number, row)
 
     def _create_star(self, star_number, row_number):
-        star = Star(self)  # Создание экземпляра star
-        random_number = randint(-10, 10)
+        star = Star(self)  # Создаем боевую звезду
         star_width, star_height = star.rect.size  # Узнаем габариты
-        available_space_x = self.settings.screen_height  # Свободное пространство по оси x
-        available_space_y = self.settings.screen_width
-        star.rect.x = random_number + (2 * star_width * star_number)
-        star.rect.y = random_number + (2 * star_height * row_number)
+        random_number = randint(-10, 10)
+        # Генерируем случайное смещение для эффекта хаотичности
+        random_x = randint(-10,10)
+        random_y = randint(-10,10)
+        star.rect.x = star_width + (2 * star_width * star_number) + random_x
+        star.rect.y = star_height + 2 * star_height * row_number + random_y
         self.stars.add(star)
 
     def _update_screen(self):
