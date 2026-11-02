@@ -21,3 +21,14 @@ class Alien(Sprite):
 
         # Сохранение точной горизонтальной позиции пришельца.
         self.x = float(self.rect.x)
+
+    def check_edges(self):
+        """Возвращает True, если пришелец гаходится у крев экрана"""
+        screen_rect = self.screen.get_rect()
+        if screen_rect.left >= self.rect.left or self.rect.right >= screen_rect.right:
+            return True
+
+    def update(self):
+        """"Перемещает пришельца вправо"""
+        self.x += (self.settings.alien_speed * self.settings.fleet_direction)
+        self.rect.x = self.x

@@ -8,7 +8,7 @@ from settings import Settings
 from bullet import Bullet
 from alien import Alien
 from big_star import Star
-
+from drop import Drop
 
 class AlienInvasion:
     """Класс для управления ресурсами и поведением игры"""
@@ -23,8 +23,10 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self.stars = pygame.sprite.Group()
+        self.drops = pygame.sprite.Group()
         self._create_fleet()
         self._create_star_sky()
+        self._create_drops()
 
     def run_game(self):
         """Запуск основного цикла игры."""
@@ -34,6 +36,8 @@ class AlienInvasion:
             self._update_ship()
             self._update_bullets()
             self.stars.update()
+            self.drops.update()
+            self._update_aliens()
             self._update_screen()
 
     def _check_events(self):
@@ -104,8 +108,45 @@ class AlienInvasion:
         alien = Alien(self)  # Создание боевого пришельца
         alien_width, alien_height = alien.rect.size  # узнаем его габариты
         alien.rect.x = alien_width + (2 * alien_width * alien_number)
+        alien.x = float(alien.rect.x)
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
+
+    def _create_drops(self):
+        """Запускает цикл"""
+        drop_test = Drop(self) # Создание тестового экземпляра
+        drop_width, drop_height = drop_test.rect.size
+        available_space_x = self.settings.screen_width - drop_width
+        number_drops_x = available_space_x // (randint(1,10) * drop_width)
+        for drop_number in range(number_drops_x):
+            self._create_drop(drop_number)
+
+    def _create_drop(self,drop_number):
+        drop = Drop(self) # Создание реальной капли
+        drop_width, drop_height = drop.rect.size # Узнаем ее габариты
+        drop.rect.x = randint(0,100) + (drop_number * 200)
+        drop.rect.y = drop_height+100
+        self.drops.add(drop)
+
+
+
+    def _update_aliens(self):
+        """Обновляет позиции всех пришельцев во флоте"""
+        self._chek_fleet_edges()
+        self.aliens.update()
+
+    def _chek_fleet_edges(self):
+        """Реагирует на достижение пришельцем края экрана"""
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+
+    def _change_fleet_direction(self):
+        """Опускает весь флот и меняте направление флота."""
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
 
     def _create_star_sky(self):
         star_test = Star(self)  # Тестовая звезд, чтобы узнать размеры.
@@ -126,8 +167,8 @@ class AlienInvasion:
         star_width, star_height = star.rect.size  # Узнаем габариты
         random_number = randint(-10, 10)
         # Генерируем случайное смещение для эффекта хаотичности
-        random_x = randint(-10,10)
-        random_y = randint(-10,10)
+        random_x = randint(-10, 10)
+        random_y = randint(-10, 10)
         star.rect.x = star_width + (2 * star_width * star_number) + random_x
         star.rect.y = star_height + 2 * star_height * row_number + random_y
         self.stars.add(star)
@@ -136,6 +177,7 @@ class AlienInvasion:
         # При каждом проходе цикла перерисовывается экран.
         self.screen.fill(self.settings.bg_color)
         self.stars.draw(self.screen)
+        self.drops.draw(self.screen)
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()

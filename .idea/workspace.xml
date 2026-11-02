@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e186c7e-f71d-4276-99bb-c6831b013e5a" name="Changes" comment="Основной файл">
-      <change beforePath="$PROJECT_DIR$/.idea/alien_invasion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/alien_invasion.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7e186c7e-f71d-4276-99bb-c6831b013e5a" name="Changes" comment="Добавил мерцание звезд">
+      <change afterPath="$PROJECT_DIR$/drop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alien.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alien_invasion.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien_invasion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/big_star.py" beforeDir="false" afterPath="$PROJECT_DIR$/big_star.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,15 +32,74 @@
     &quot;assignee&quot;: &quot;rinatknyazev&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/rinatknyazev/alien_invasion.git",
-    "accountId": "2ff08c52-5d87-4efd-a405-8a228d99d0c7"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/rinatknyazev/alien_invasion.git&quot;,
+    &quot;accountId&quot;: &quot;2ff08c52-5d87-4efd-a405-8a228d99d0c7&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/.venv_1/Lib/site-packages/_virtualenv.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/.venv_1/Lib/site-packages/pygame/freetype.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.5003446825385867E-166" />
+      <entry key="MS500" value="1.189403643927659E-33" />
+      <entry key="S2" value="9.875755117553884E-9" />
+      <entry key="S5" value="9.515757411444133E-4" />
+      <entry key="S10" value="0.043625078222393004" />
+      <entry key="S30" value="0.5588114563099267" />
+      <entry key="S60" value="1.0571768285587853" />
+      <entry key="M2" value="1.4540817122869325" />
+      <entry key="M5" value="1.7605847274016204" />
+      <entry key="M10" value="1.8899512292383074" />
+      <entry key="M15" value="2.052533072675052" />
+      <entry key="M30" value="3.5157917331869455" />
+      <entry key="H1" value="13.909137685554573" />
+      <entry key="H2" value="65.44482601133457" />
+      <entry key="H4" value="183.83677396211812" />
+      <entry key="D1" value="524.5251672594803" />
+      <entry key="W1" value="641.6318533577312" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.000000000000012" />
+      <entry key="M5" value="1.0000050773286004" />
+      <entry key="M10" value="1.0042945207079361" />
+      <entry key="M15" value="1.0414842857993574" />
+      <entry key="M30" value="1.4334805744823385" />
+      <entry key="H1" value="3.4146516352465053" />
+      <entry key="H2" value="11.239753692834748" />
+      <entry key="H4" value="26.66759436289114" />
+      <entry key="D1" value="63.537937158907944" />
+      <entry key="W1" value="74.88416363481029" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="3.1813530299106495E-5" />
+      <entry key="MS500" value="0.1260440568618244" />
+      <entry key="S2" value="0.5958412956552255" />
+      <entry key="S5" value="0.813815501998572" />
+      <entry key="S10" value="0.9437225347746021" />
+      <entry key="S30" value="1.5182023000884266" />
+      <entry key="S60" value="2.0337098800259947" />
+      <entry key="M2" value="2.441105259403484" />
+      <entry key="M5" value="2.7550168207364085" />
+      <entry key="M10" value="2.8913366854050113" />
+      <entry key="M15" value="3.091756769102425" />
+      <entry key="M30" value="4.946478987421964" />
+      <entry key="H1" value="17.318553598096525" />
+      <entry key="H2" value="76.67510946041575" />
+      <entry key="H4" value="210.49293451957718" />
+      <entry key="D1" value="588.0583660873316" />
+      <entry key="W1" value="716.5152087583376" />
+    </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -57,7 +115,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.alien_invasion.executor": "Run",
+    "Python.alien_invasion.executor": "Debug",
     "Python.broadilca.executor": "Run",
     "Python.bullet.executor": "Run",
     "Python.pygamer.executor": "Run",
@@ -158,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790410934404</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Добавил мерцание звезд">
+      <option name="closed" value="true" />
+      <created>1793103470241</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1793103470241</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,19 +243,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Основной файл" />
-    <option name="LAST_COMMIT_MESSAGE" value="Основной файл" />
+    <MESSAGE value="Добавил мерцание звезд" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил мерцание звезд" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/alien_invasion.py</url>
-          <line>86</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/alien_invasion.py</url>
-          <line>79</line>
+          <line>116</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
