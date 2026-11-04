@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e186c7e-f71d-4276-99bb-c6831b013e5a" name="Changes" comment="Добавил мерцание звезд">
-      <change afterPath="$PROJECT_DIR$/drop.py" afterDir="false" />
+    <list default="true" id="7e186c7e-f71d-4276-99bb-c6831b013e5a" name="Changes" comment="Начал создание капель">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alien.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alien_invasion.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien_invasion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drop.py" beforeDir="false" afterPath="$PROJECT_DIR$/drop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,66 +38,65 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/.venv_1/Lib/site-packages/_virtualenv.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/.venv_1/Lib/site-packages/pygame/freetype.py" root0="SKIP_INSPECTION" />
+    <setting file="file:///Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/random.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.5003446825385867E-166" />
-      <entry key="MS500" value="1.189403643927659E-33" />
-      <entry key="S2" value="9.875755117553884E-9" />
-      <entry key="S5" value="9.515757411444133E-4" />
-      <entry key="S10" value="0.043625078222393004" />
-      <entry key="S30" value="0.5588114563099267" />
-      <entry key="S60" value="1.0571768285587853" />
-      <entry key="M2" value="1.4540817122869325" />
-      <entry key="M5" value="1.7605847274016204" />
-      <entry key="M10" value="1.8899512292383074" />
-      <entry key="M15" value="2.052533072675052" />
-      <entry key="M30" value="3.5157917331869455" />
-      <entry key="H1" value="13.909137685554573" />
-      <entry key="H2" value="65.44482601133457" />
-      <entry key="H4" value="183.83677396211812" />
-      <entry key="D1" value="524.5251672594803" />
-      <entry key="W1" value="641.6318533577312" />
+      <entry key="MS100" value="1.0000000001473535" />
+      <entry key="MS500" value="1.010806176789148" />
+      <entry key="S2" value="1.3224251425846565" />
+      <entry key="S5" value="1.6513799771794009" />
+      <entry key="S10" value="2.0401884368114134" />
+      <entry key="S30" value="5.111805736674887" />
+      <entry key="S60" value="10.166580273858143" />
+      <entry key="M2" value="17.262700348404206" />
+      <entry key="M5" value="31.40366882441964" />
+      <entry key="M10" value="50.862457619323365" />
+      <entry key="M15" value="67.32275912297176" />
+      <entry key="M30" value="98.93984098414082" />
+      <entry key="H1" value="125.68435163520577" />
+      <entry key="H2" value="143.54864271162995" />
+      <entry key="H4" value="161.0248227406235" />
+      <entry key="D1" value="551.6737342187895" />
+      <entry key="W1" value="1003.5011892642391" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0" />
-      <entry key="S60" value="1.0" />
-      <entry key="M2" value="1.000000000000012" />
-      <entry key="M5" value="1.0000050773286004" />
-      <entry key="M10" value="1.0042945207079361" />
-      <entry key="M15" value="1.0414842857993574" />
-      <entry key="M30" value="1.4334805744823385" />
-      <entry key="H1" value="3.4146516352465053" />
-      <entry key="H2" value="11.239753692834748" />
-      <entry key="H4" value="26.66759436289114" />
-      <entry key="D1" value="63.537937158907944" />
-      <entry key="W1" value="74.88416363481029" />
+      <entry key="MS100" value="2.13429204216623E-59" />
+      <entry key="MS500" value="1.844381571878444E-12" />
+      <entry key="S2" value="0.001180073898524884" />
+      <entry key="S5" value="0.08363124821308995" />
+      <entry key="S10" value="0.4386852623335909" />
+      <entry key="S30" value="1.5306518702917298" />
+      <entry key="S60" value="2.134732542293112" />
+      <entry key="M2" value="2.5453931976476696" />
+      <entry key="M5" value="3.1750983831050856" />
+      <entry key="M10" value="4.289095457604611" />
+      <entry key="M15" value="5.21688480678404" />
+      <entry key="M30" value="6.872468044114301" />
+      <entry key="H1" value="8.179479691827378" />
+      <entry key="H2" value="9.024438986188873" />
+      <entry key="H4" value="10.259783517384061" />
+      <entry key="D1" value="54.84095741746128" />
+      <entry key="W1" value="105.88547522375357" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="3.1813530299106495E-5" />
-      <entry key="MS500" value="0.1260440568618244" />
-      <entry key="S2" value="0.5958412956552255" />
-      <entry key="S5" value="0.813815501998572" />
-      <entry key="S10" value="0.9437225347746021" />
-      <entry key="S30" value="1.5182023000884266" />
-      <entry key="S60" value="2.0337098800259947" />
-      <entry key="M2" value="2.441105259403484" />
-      <entry key="M5" value="2.7550168207364085" />
-      <entry key="M10" value="2.8913366854050113" />
-      <entry key="M15" value="3.091756769102425" />
-      <entry key="M30" value="4.946478987421964" />
-      <entry key="H1" value="17.318553598096525" />
-      <entry key="H2" value="76.67510946041575" />
-      <entry key="H4" value="210.49293451957718" />
-      <entry key="D1" value="588.0583660873316" />
-      <entry key="W1" value="716.5152087583376" />
+      <entry key="MS100" value="0.005190178961326782" />
+      <entry key="MS500" value="0.35082114149072685" />
+      <entry key="S2" value="0.9708631934896623" />
+      <entry key="S5" value="1.5055473882315398" />
+      <entry key="S10" value="2.3006297392078148" />
+      <entry key="S30" value="6.530046030217133" />
+      <entry key="S60" value="12.22987623823858" />
+      <entry key="M2" value="19.76440565584393" />
+      <entry key="M5" value="34.54871252770539" />
+      <entry key="M10" value="55.1217405136738" />
+      <entry key="M15" value="72.50995557973133" />
+      <entry key="M30" value="105.78731429504855" />
+      <entry key="H1" value="133.84684881596843" />
+      <entry key="H2" value="152.56304955629264" />
+      <entry key="H4" value="171.27854303741216" />
+      <entry key="D1" value="606.509420566437" />
+      <entry key="W1" value="1109.3852667283309" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -115,7 +113,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.alien_invasion.executor": "Debug",
+    "Python.alien_invasion.executor": "Run",
     "Python.broadilca.executor": "Run",
     "Python.bullet.executor": "Run",
     "Python.pygamer.executor": "Run",
@@ -224,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793103470241</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Начал создание капель">
+      <option name="closed" value="true" />
+      <created>1793654493599</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1793654493599</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,17 +250,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Основной файл" />
     <MESSAGE value="Добавил мерцание звезд" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил мерцание звезд" />
+    <MESSAGE value="Начал создание капель" />
+    <option name="LAST_COMMIT_MESSAGE" value="Начал создание капель" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/alien_invasion.py</url>
-          <line>116</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

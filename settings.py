@@ -1,3 +1,6 @@
+from random import randint
+
+
 class Settings():
     """Класс для сохранения всех настроек игры Alies Invasion"""
 
@@ -15,11 +18,12 @@ class Settings():
         self.fleet_drop_speed = 10 # Снижение флота при достижении им края
         self.fleet_direction = 1 # 1 — движение вправо, -1 — влево
         # Параметры капли
-        self.drop_speed = 0.1
-
-
+        self.drop_speed = 0.5
+        self.drop_trasser_width = 2
+        self.drop_trasser_height= 5
+        self.drop_trasser_color = (150,150,150)
         # Параметры снаряда
         self.bullet_speed = 1
-        self.bullet_width = 3
+        self.bullet_width = 300
         self.bullet_height = 15
-        self.bullet_color = (60, 60, 60)
+        self.bullet_color = (255, 255, 255)

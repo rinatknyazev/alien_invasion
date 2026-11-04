@@ -10,6 +10,7 @@ from alien import Alien
 from big_star import Star
 from drop import Drop
 
+
 class AlienInvasion:
     """Класс для управления ресурсами и поведением игры"""
 
@@ -19,6 +20,7 @@ class AlienInvasion:
         self.settings = Settings()
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
+        self.screen_rect = self.screen.get_rect()
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
@@ -31,13 +33,12 @@ class AlienInvasion:
     def run_game(self):
         """Запуск основного цикла игры."""
         while True:
-            print(len(self.bullets))
             self._check_events()
             self._update_ship()
             self._update_bullets()
             self.stars.update()
-            self.drops.update()
             self._update_aliens()
+            self._update_drops()
             self._update_screen()
 
     def _check_events(self):
@@ -85,6 +86,17 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+        self._check_bullet_alien_collisions()
+    def _check_bullet_alien_collisions(self):
+        """Обработка коллизий снарядов с пришельцами"""
+        # Удаление снарядов и пришельцев, участвующих в коллизиях.
+        collisions = pygame.sprite.groupcollide(
+            self.bullets, self.aliens, True, True)
+        if not self.aliens:
+            # Уничтожение существующих снарядов и создание нового флота
+            self.bullets.empty()
+            self._create_fleet()
+
 
     def _create_fleet(self):
         """рассчитывает ширину, свободное место и запускает цикл."""
@@ -114,28 +126,29 @@ class AlienInvasion:
 
     def _create_drops(self):
         """Запускает цикл"""
-        drop_test = Drop(self) # Создание тестового экземпляра
-        drop_width, drop_height = drop_test.rect.size
-        available_space_x = self.settings.screen_width - drop_width
-        number_drops_x = available_space_x // (randint(1,10) * drop_width)
-        for drop_number in range(number_drops_x):
-            self._create_drop(drop_number)
+        drop = Drop(self)  # Создание тестовой капли чтобы узнать е размеры
+        drop_width, drop_height = drop.rect.size
+        next_drop_x = drop_width + (randint(1, 50))
+        while next_drop_x + drop_width <= self.screen_rect.right:
+            drop = Drop(self)
+            drop.rect.x = next_drop_x
+            self.drops.add(drop)
+            next_drop_x += drop_width + (randint(1, 50))
 
-    def _create_drop(self,drop_number):
-        drop = Drop(self) # Создание реальной капли
-        drop_width, drop_height = drop.rect.size # Узнаем ее габариты
-        drop.rect.x = randint(0,100) + (drop_number * 200)
-        drop.rect.y = drop_height+100
-        self.drops.add(drop)
-
-
+    def _update_drops(self):
+        self.drops.update()
+        for drop in self.drops:
+            if drop.rect.top >= self.screen_rect.bottom:
+                drop.rect.bottom = self.screen_rect.top
+                drop.y = float(drop.rect.y)
+                drop.speed = randint(1, 2)
 
     def _update_aliens(self):
         """Обновляет позиции всех пришельцев во флоте"""
-        self._chek_fleet_edges()
+        self._check_fleet_edges()
         self.aliens.update()
 
-    def _chek_fleet_edges(self):
+    def _check_fleet_edges(self):
         """Реагирует на достижение пришельцем края экрана"""
         for alien in self.aliens.sprites():
             if alien.check_edges():
@@ -177,6 +190,8 @@ class AlienInvasion:
         # При каждом проходе цикла перерисовывается экран.
         self.screen.fill(self.settings.bg_color)
         self.stars.draw(self.screen)
+        for drop in self.drops:
+            drop.draw_trasser()
         self.drops.draw(self.screen)
         self.ship.blitme()
         for bullet in self.bullets.sprites():
