@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e186c7e-f71d-4276-99bb-c6831b013e5a" name="Changes" comment="Игра фиксирует косание флота с левой границей экрана">
+    <list default="true" id="7e186c7e-f71d-4276-99bb-c6831b013e5a" name="Changes" comment="Остановка игры после 3 смертей">
+      <change afterPath="$PROJECT_DIR$/button.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alien_invasion.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien_invasion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_stats.py" afterDir="false" />
@@ -46,61 +47,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.000000638869103" />
-      <entry key="S2" value="1.0717737247778418" />
-      <entry key="S5" value="2.1273521455111872" />
-      <entry key="S10" value="3.9678364151811305" />
-      <entry key="S30" value="6.734037533194025" />
-      <entry key="S60" value="7.818760458929109" />
-      <entry key="M2" value="9.208380999870583" />
-      <entry key="M5" value="13.945589977046287" />
-      <entry key="M10" value="19.134640512111698" />
-      <entry key="M15" value="24.807771312920494" />
-      <entry key="M30" value="55.97983310222998" />
-      <entry key="H1" value="138.5930081762266" />
-      <entry key="H2" value="261.28886598023655" />
-      <entry key="H4" value="380.8858677695408" />
-      <entry key="D1" value="858.0230332914178" />
-      <entry key="W1" value="1616.4581600863423" />
+      <entry key="MS100" value="1.0000000001728213" />
+      <entry key="MS500" value="1.0111563224414024" />
+      <entry key="S2" value="1.357718848122627" />
+      <entry key="S5" value="2.2902272557012058" />
+      <entry key="S10" value="3.7875888104753095" />
+      <entry key="S30" value="7.289174536197869" />
+      <entry key="S60" value="12.909235337364708" />
+      <entry key="M2" value="25.593312694818547" />
+      <entry key="M5" value="66.95123498250642" />
+      <entry key="M10" value="125.74407923676952" />
+      <entry key="M15" value="165.46952109618192" />
+      <entry key="M30" value="239.1842203075276" />
+      <entry key="H1" value="343.63707887033246" />
+      <entry key="H2" value="485.21018983883795" />
+      <entry key="H4" value="625.3559399303701" />
+      <entry key="D1" value="1130.9302995486041" />
+      <entry key="W1" value="1899.884830295775" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.1498311367E-314" />
-      <entry key="S2" value="3.338473480739558E-79" />
-      <entry key="S5" value="4.8728861343884766E-32" />
-      <entry key="S10" value="2.925129190471605E-16" />
-      <entry key="S30" value="1.0910070255088606E-5" />
-      <entry key="S60" value="0.005282962072352593" />
-      <entry key="M2" value="0.12247461289306263" />
-      <entry key="M5" value="0.8283641520442006" />
-      <entry key="M10" value="1.606315019818541" />
-      <entry key="M15" value="2.196189005435325" />
-      <entry key="M30" value="4.900404681608618" />
-      <entry key="H1" value="13.610717295419276" />
-      <entry key="H2" value="29.12613745970449" />
-      <entry key="H4" value="45.63511063069027" />
-      <entry key="D1" value="96.65837874076135" />
-      <entry key="W1" value="175.49062302340528" />
+      <entry key="MS100" value="1.638956555790505E-17" />
+      <entry key="MS500" value="4.3945406728198807E-4" />
+      <entry key="S2" value="0.1448068068011092" />
+      <entry key="S5" value="0.4813777998503416" />
+      <entry key="S10" value="0.8776158630927503" />
+      <entry key="S30" value="1.8174433003463988" />
+      <entry key="S60" value="2.438354582378396" />
+      <entry key="M2" value="3.4977202204441262" />
+      <entry key="M5" value="7.444795899270987" />
+      <entry key="M10" value="12.382107845163677" />
+      <entry key="M15" value="15.491266128063682" />
+      <entry key="M30" value="21.186700416447415" />
+      <entry key="H1" value="30.791778963746054" />
+      <entry key="H2" value="47.03836588295357" />
+      <entry key="H4" value="65.1186218787726" />
+      <entry key="D1" value="119.15600043958464" />
+      <entry key="W1" value="199.11379106865795" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="2.8779972898752935E-13" />
-      <entry key="MS500" value="0.0031033965834255475" />
-      <entry key="S2" value="0.29476322382797193" />
-      <entry key="S5" value="1.6278012843591445" />
-      <entry key="S10" value="3.6463956539783378" />
-      <entry key="S30" value="6.600660423640372" />
-      <entry key="S60" value="7.752672700588397" />
-      <entry key="M2" value="9.291031598893898" />
-      <entry key="M5" value="14.751259340800724" />
-      <entry key="M10" value="20.725805281129276" />
-      <entry key="M15" value="26.99108491650032" />
-      <entry key="M30" value="60.86594882462378" />
-      <entry key="H1" value="152.18557835248308" />
-      <entry key="H2" value="290.3973295884999" />
-      <entry key="H4" value="426.50779993778406" />
-      <entry key="D1" value="954.6755018280116" />
-      <entry key="W1" value="1791.9469419742288" />
+      <entry key="MS100" value="0.9138314502449969" />
+      <entry key="MS500" value="0.9891159395324813" />
+      <entry key="S2" value="1.404987045849444" />
+      <entry key="S5" value="2.6049371722438015" />
+      <entry key="S10" value="4.473837771355291" />
+      <entry key="S30" value="8.933694393819957" />
+      <entry key="S60" value="15.166802552928715" />
+      <entry key="M2" value="28.912946390092166" />
+      <entry key="M5" value="74.23919476782235" />
+      <entry key="M10" value="137.99684103041105" />
+      <entry key="M15" value="180.85309827950485" />
+      <entry key="M30" value="260.29793235801316" />
+      <entry key="H1" value="374.37870215045086" />
+      <entry key="H2" value="532.2137786518132" />
+      <entry key="H4" value="690.45218764997" />
+      <entry key="D1" value="1250.0787120955004" />
+      <entry key="W1" value="2098.9965311148044" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -266,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793884390493</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Остановка игры после 3 смертей">
+      <option name="closed" value="true" />
+      <created>1793889366338</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1793889366338</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +300,8 @@
     <MESSAGE value="Переврнул игру горизонтально" />
     <MESSAGE value="Добавил фиксирование столновения и возврат корабля в исходную позицию. Флот создается заного" />
     <MESSAGE value="Игра фиксирует косание флота с левой границей экрана" />
-    <option name="LAST_COMMIT_MESSAGE" value="Игра фиксирует косание флота с левой границей экрана" />
+    <MESSAGE value="Остановка игры после 3 смертей" />
+    <option name="LAST_COMMIT_MESSAGE" value="Остановка игры после 3 смертей" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
