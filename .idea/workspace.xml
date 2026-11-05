@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e186c7e-f71d-4276-99bb-c6831b013e5a" name="Changes" comment="Добавил фиксирование столновения и возврат корабля в исходную позицию. Флот создается заного">
+    <list default="true" id="7e186c7e-f71d-4276-99bb-c6831b013e5a" name="Changes" comment="Игра фиксирует косание флота с левой границей экрана">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alien_invasion.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien_invasion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_stats.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,60 +47,60 @@
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000238732843694" />
-      <entry key="S2" value="1.1819057298569962" />
-      <entry key="S5" value="2.15477755800877" />
-      <entry key="S10" value="3.147096738208183" />
-      <entry key="S30" value="4.2984472231806485" />
-      <entry key="S60" value="5.784753879138483" />
-      <entry key="M2" value="12.881041507863095" />
-      <entry key="M5" value="44.23588611490052" />
-      <entry key="M10" value="81.23071988599307" />
-      <entry key="M15" value="105.25200515171748" />
-      <entry key="M30" value="162.70224110738877" />
-      <entry key="H1" value="248.88914662425034" />
-      <entry key="H2" value="340.6086485450369" />
-      <entry key="H4" value="416.50320182419966" />
-      <entry key="D1" value="836.5244735168183" />
-      <entry key="W1" value="1571.9276401231436" />
+      <entry key="MS500" value="1.000000638869103" />
+      <entry key="S2" value="1.0717737247778418" />
+      <entry key="S5" value="2.1273521455111872" />
+      <entry key="S10" value="3.9678364151811305" />
+      <entry key="S30" value="6.734037533194025" />
+      <entry key="S60" value="7.818760458929109" />
+      <entry key="M2" value="9.208380999870583" />
+      <entry key="M5" value="13.945589977046287" />
+      <entry key="M10" value="19.134640512111698" />
+      <entry key="M15" value="24.807771312920494" />
+      <entry key="M30" value="55.97983310222998" />
+      <entry key="H1" value="138.5930081762266" />
+      <entry key="H2" value="261.28886598023655" />
+      <entry key="H4" value="380.8858677695408" />
+      <entry key="D1" value="858.0230332914178" />
+      <entry key="W1" value="1616.4581600863423" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="9.356268632552505E-140" />
-      <entry key="S2" value="1.749255634248066E-35" />
-      <entry key="S5" value="1.2902025736369612E-14" />
-      <entry key="S10" value="1.3173657377412453E-7" />
-      <entry key="S30" value="0.007720294905757001" />
-      <entry key="S60" value="0.1503854091794828" />
-      <entry key="M2" value="0.9449682883607625" />
-      <entry key="M5" value="3.906935718018433" />
-      <entry key="M10" value="6.806094068638141" />
-      <entry key="M15" value="8.71259525332833" />
-      <entry key="M30" value="14.795171852788087" />
-      <entry key="H1" value="26.657023590591585" />
-      <entry key="H2" value="41.07114537877378" />
-      <entry key="H4" value="53.39567626919506" />
-      <entry key="D1" value="97.22177110042684" />
-      <entry key="W1" value="173.41159505107328" />
+      <entry key="MS500" value="1.1498311367E-314" />
+      <entry key="S2" value="3.338473480739558E-79" />
+      <entry key="S5" value="4.8728861343884766E-32" />
+      <entry key="S10" value="2.925129190471605E-16" />
+      <entry key="S30" value="1.0910070255088606E-5" />
+      <entry key="S60" value="0.005282962072352593" />
+      <entry key="M2" value="0.12247461289306263" />
+      <entry key="M5" value="0.8283641520442006" />
+      <entry key="M10" value="1.606315019818541" />
+      <entry key="M15" value="2.196189005435325" />
+      <entry key="M30" value="4.900404681608618" />
+      <entry key="H1" value="13.610717295419276" />
+      <entry key="H2" value="29.12613745970449" />
+      <entry key="H4" value="45.63511063069027" />
+      <entry key="D1" value="96.65837874076135" />
+      <entry key="W1" value="175.49062302340528" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="3.378090248515294E-24" />
-      <entry key="MS500" value="3.39176601405717E-5" />
-      <entry key="S2" value="0.22909303658505661" />
-      <entry key="S5" value="1.4437112950084476" />
-      <entry key="S10" value="2.6827949110471994" />
-      <entry key="S30" value="4.116624061802641" />
-      <entry key="S60" value="5.824469350846218" />
-      <entry key="M2" value="13.7359089092388" />
-      <entry key="M5" value="48.05169027266151" />
-      <entry key="M10" value="87.96208748008091" />
-      <entry key="M15" value="113.90253383328111" />
-      <entry key="M30" value="177.4510878751298" />
-      <entry key="H1" value="275.5107170167207" />
-      <entry key="H2" value="381.655200622104" />
-      <entry key="H4" value="469.88365839694745" />
-      <entry key="D1" value="933.7402896264676" />
-      <entry key="W1" value="1745.337409167202" />
+      <entry key="MS100" value="2.8779972898752935E-13" />
+      <entry key="MS500" value="0.0031033965834255475" />
+      <entry key="S2" value="0.29476322382797193" />
+      <entry key="S5" value="1.6278012843591445" />
+      <entry key="S10" value="3.6463956539783378" />
+      <entry key="S30" value="6.600660423640372" />
+      <entry key="S60" value="7.752672700588397" />
+      <entry key="M2" value="9.291031598893898" />
+      <entry key="M5" value="14.751259340800724" />
+      <entry key="M10" value="20.725805281129276" />
+      <entry key="M15" value="26.99108491650032" />
+      <entry key="M30" value="60.86594882462378" />
+      <entry key="H1" value="152.18557835248308" />
+      <entry key="H2" value="290.3973295884999" />
+      <entry key="H4" value="426.50779993778406" />
+      <entry key="D1" value="954.6755018280116" />
+      <entry key="W1" value="1791.9469419742288" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -139,7 +139,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors"
+    "settings.editor.selected.configurable": "Errors"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -258,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793883569165</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Игра фиксирует косание флота с левой границей экрана">
+      <option name="closed" value="true" />
+      <created>1793884390493</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1793884390493</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +290,8 @@
     <MESSAGE value="1. Добавлено удаление снарядов и пришельцев при столвновении.&#10;2. Удаление всех снарядов и создание нового флота пришельцев" />
     <MESSAGE value="Переврнул игру горизонтально" />
     <MESSAGE value="Добавил фиксирование столновения и возврат корабля в исходную позицию. Флот создается заного" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил фиксирование столновения и возврат корабля в исходную позицию. Флот создается заного" />
+    <MESSAGE value="Игра фиксирует косание флота с левой границей экрана" />
+    <option name="LAST_COMMIT_MESSAGE" value="Игра фиксирует косание флота с левой границей экрана" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -38,11 +38,12 @@ class AlienInvasion:
         """Запуск основного цикла игры."""
         while True:
             self._check_events()
-            self._update_ship()
-            self._update_bullets()
-            self.stars.update()
-            self._update_aliens()
-            self._update_drops()
+            if self.stats.game_active:
+                self._update_ship()
+                self._update_bullets()
+                self.stars.update()
+                self._update_aliens()
+                self._update_drops()
             self._update_screen()
 
     def _check_events(self):
@@ -62,7 +63,7 @@ class AlienInvasion:
                     self.ship.moving_down = True
                 elif event.key == pygame.K_ESCAPE:
                     sys.exit()  # Корректно закрывает программу
-                elif event.key == pygame.K_SPACE:
+                elif event.key == pygame.K_SPACE and self.stats.game_active:
                     self._fire_bullet()
             elif event.type == pygame.KEYUP:  # Клавиша не нажата
                 if event.key == pygame.K_RIGHT:
@@ -183,19 +184,22 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """Обрабатывает столкновение корабля с пришельцем."""
-        # Уменьшение ships_left.
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0:
+            # Уменьшение ships_left.
+            self.stats.ships_left -= 1
 
-        # Очистка списков пришельцев и снарядов.
-        self.aliens.empty()
-        self.bullets.empty()
+            # Очистка списков пришельцев и снарядов.
+            self.aliens.empty()
+            self.bullets.empty()
 
-        # Создание нового флота и размещение корабля в центре.
-        self._create_fleet()
-        self.ship.center_ship()
+            # Создание нового флота и размещение корабля в центре.
+            self._create_fleet()
+            self.ship.center_ship()
 
-        # Пауза
-        sleep(1)
+            # Пауза
+            sleep(1)
+        else:
+            self.stats.game_active = False
 
     def _create_star_sky(self):
         star_test = Star(self)  # Тестовая звезд, чтобы узнать размеры.
