@@ -12,10 +12,12 @@ class Settings():
         self.bg_color = (0, 0, 0)
         # Настройки корабля
         self.ship_speed = 1
+        self.ship_limit = 3
         # Настройки пришельцев
-        self.alien_speed = 0.2 # Скорость пришельца
+        self.alien_speed = 1 # Скорость пришельца
         self.fleet_drop_speed = 10 # Снижение флота при достижении им края
         self.fleet_direction = 1
+        # Настройка капель
         self.drop_speed = 0.5
         self.drop_trasser_width = 2
         self.drop_trasser_height= 5

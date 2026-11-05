@@ -9,6 +9,8 @@ from bullet import Bullet
 from alien import Alien
 from big_star import Star
 from drop import Drop
+from time import sleep
+from game_stats import GameStats
 
 
 class AlienInvasion:
@@ -21,6 +23,8 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
         self.screen_rect = self.screen.get_rect()
+        # Создание экземпляра для хранения игровой статистики
+        self.stats = GameStats(self)
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
@@ -102,7 +106,7 @@ class AlienInvasion:
         """рассчитывает ширину, свободное место и запускает цикл."""
         alien_test = Alien(self)  # Создание ТЕСТОВОГО экземпляра
         alien_width, alien_height = alien_test.rect.size  # Ширина пришельца
-        available_space_x = self.screen_rect.width - self.ship.rect.width -3 *alien_width  # Вычисление доступного расстояния
+        available_space_x = self.screen_rect.width - self.ship.rect.width - 3 * alien_width  # Вычисление доступного расстояния
         number_aliens_x = available_space_x // (2 * alien_width)  # Кол-во пришельцев
         """Определяет количество рядов, помещающися на экране"""
         ship_width = self.ship.rect.width  # Ширина корабля
@@ -113,9 +117,9 @@ class AlienInvasion:
         # Создание флота вторжения.
         for row_number in range(number_rows):  # Перебираем список пришельцев(кол-во)
             for alien_number in range(number_aliens_x):
-                self._create_alien(alien_number,row_number)
+                self._create_alien(alien_number, row_number)
 
-    def _create_alien(self, alien_number,row_number):
+    def _create_alien(self, alien_number, row_number):
         """только за создание одного пришельца и добавление его в группу"""
         alien = Alien(self)  # Создание боевого пришельца
         alien_width, alien_height = alien.rect.size  # узнаем его габариты
@@ -149,6 +153,9 @@ class AlienInvasion:
         """Обновляет позиции всех пришельцев во флоте"""
         self._check_fleet_edges()
         self.aliens.update()
+        # Проверка коллизий "Пришелец – корабль".
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            self._ship_hit()
 
     def _check_fleet_edges(self):
         """Реагирует на достижение пришельцем края экрана"""
@@ -162,6 +169,22 @@ class AlienInvasion:
         for alien in self.aliens.sprites():
             alien.rect.x -= self.settings.fleet_drop_speed
         self.settings.fleet_direction *= -1
+
+    def _ship_hit(self):
+        """Обрабатывает столкновение корабля с пришельцем."""
+        # Уменьшение ships_left.
+        self.stats.ships_left -= 1
+
+        # Очистка списков пришельцев и снарядов.
+        self.aliens.empty()
+        self.bullets.empty()
+
+        # Создание нового флота и размещение корабля в центре.
+        self._create_fleet()
+        self.ship.center_ship()
+
+        # Пауза
+        sleep(1)
 
     def _create_star_sky(self):
         star_test = Star(self)  # Тестовая звезд, чтобы узнать размеры.
