@@ -231,6 +231,7 @@ class AlienInvasion:
             sleep(1)
         else:
             self.stats.game_active = False
+            pygame.mouse.set_visible(True)
 
     def _create_star_sky(self):
         star_test = Star(self)  # Тестовая звезд, чтобы узнать размеры.

@@ -14,8 +14,8 @@ class Settings():
         self.ship_speed = 1
         self.ship_limit = 3
         # Настройки пришельцев
-        self.alien_speed = 1 # Скорость пришельца
-        self.fleet_drop_speed = 20 # Снижение флота при достижении им края
+        self.alien_speed = 3 # Скорость пришельца
+        self.fleet_drop_speed = 50 # Снижение флота при достижении им края
         self.fleet_direction = 1
         # Настройка капель
         self.drop_speed = 0.5
