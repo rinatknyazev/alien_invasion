@@ -34,7 +34,7 @@ class AlienInvasion:
         self._create_fleet()
         self._create_star_sky()
         self._create_drops()
-        self.play_button = Button(self,'Play')
+        self.play_button = Button(self, 'Play')
 
     def run_game(self):
         """Запуск основного цикла игры."""
@@ -48,7 +48,7 @@ class AlienInvasion:
                 self._update_drops()
             self._update_screen()
 
-    def _check_play_button(self,mouse_pos):
+    def _check_play_button(self, mouse_pos):
         """Запускает новую игру при нажатии Play"""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
@@ -56,15 +56,23 @@ class AlienInvasion:
             self.stats.reset_stats()
             self.stats.game_active = True
             # Очистка списков пришельцев и снарядов.
-            self.aliens.empty()
-            self.bullets.empty()
-            self.stars.empty()
-            self.drops.empty()
+            self._clean_objects()
             # Создание нового флотка и размещение корабля в центре левого края
-            self._create_fleet()
-            self.ship.center_ship()
-            self._create_star_sky()
-            self._create_drops()
+            self._create_objects()
+            # Указатель мыши скрыватся.
+            pygame.mouse.set_visible(False)
+
+    def _clean_objects(self):
+        self.aliens.empty()
+        self.bullets.empty()
+        self.stars.empty()
+        self.drops.empty()
+
+    def _create_objects(self):
+        self._create_fleet()
+        self.ship.center_ship()
+        self._create_star_sky()
+        self._create_drops()
 
     def _check_events(self):
         # Отслеживание событий клавиатуры и мыши.
