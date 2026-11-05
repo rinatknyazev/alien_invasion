@@ -48,31 +48,27 @@ class AlienInvasion:
                 self._update_drops()
             self._update_screen()
 
-    def _check_play_button(self, mouse_pos):
-        """Запускает новую игру при нажатии Play"""
-        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
-        if button_clicked and not self.stats.game_active:
-            # Сброс игровой статистики.
-            self.stats.reset_stats()
-            self.stats.game_active = True
-            # Очистка списков пришельцев и снарядов.
-            self._clean_objects()
-            # Создание нового флотка и размещение корабля в центре левого края
-            self._create_objects()
-            # Указатель мыши скрыватся.
-            pygame.mouse.set_visible(False)
-
-    def _clean_objects(self):
+    def start_game(self):
+        self.stats.reset_stats()
+        self.stats.game_active = True
+        # Очистка списков пришельцев и снарядов.
         self.aliens.empty()
         self.bullets.empty()
         self.stars.empty()
         self.drops.empty()
-
-    def _create_objects(self):
+        # Создание нового флота и размещение корабля в центре левого края
         self._create_fleet()
         self.ship.center_ship()
         self._create_star_sky()
         self._create_drops()
+        # Указатель мыши скрыватся.
+        pygame.mouse.set_visible(False)
+
+    def _check_play_button(self, mouse_pos):
+        """Запускает новую игру при нажатии Play"""
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.stats.game_active:
+            self.start_game()
 
     def _check_events(self):
         # Отслеживание событий клавиатуры и мыши.
@@ -93,6 +89,8 @@ class AlienInvasion:
                     sys.exit()  # Корректно закрывает программу
                 elif event.key == pygame.K_SPACE and self.stats.game_active:
                     self._fire_bullet()
+                elif event.key == pygame.K_p and not self.stats.game_active:
+                    self.start_game()
             elif event.type == pygame.KEYUP:  # Клавиша не нажата
                 if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = False
