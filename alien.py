@@ -13,6 +13,7 @@ class Alien(Sprite):
 
         # Загрузка изображения пришельца и назначения атрибута rect.
         self.image = pygame.image.load('images/alien.bmp')
+        self.image = pygame.transform.rotate(self.image,-90)
         self.rect = self.image.get_rect()
 
         # Каждый новый пришелец появляется в левом верхнем углу экрана.
@@ -21,14 +22,15 @@ class Alien(Sprite):
 
         # Сохранение точной горизонтальной позиции пришельца.
         self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
 
     def check_edges(self):
-        """Возвращает True, если пришелец гаходится у крев экрана"""
+        """Возвращает True, если пришелец находится у крев экрана"""
         screen_rect = self.screen.get_rect()
-        if screen_rect.left >= self.rect.left or self.rect.right >= screen_rect.right:
+        if screen_rect.top >= self.rect.top or self.rect.bottom >= screen_rect.bottom:
             return True
 
     def update(self):
-        """"Перемещает пришельца вправо"""
-        self.x += (self.settings.alien_speed * self.settings.fleet_direction)
-        self.rect.x = self.x
+        """"Перемещает пришельца влево"""
+        self.y += (self.settings.alien_speed * self.settings.fleet_direction)
+        self.rect.y = self.y

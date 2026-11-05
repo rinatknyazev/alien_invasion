@@ -7,9 +7,10 @@ class Ship():
         self.screen = ai_game.screen  # Определение экрана
         self.settings = ai_game.settings  # Определение настроек
         self.screen_rect = ai_game.screen.get_rect()  # Определение прямоугльника для экрана
-        self.image = pygame.image.load('images/ship.bmp')  # Загрузка изображения
+        self.image = pygame.image.load('images/ship.bmp')# Загрузка изображения
+        self.image  = pygame.transform.rotate(self.image,-90)
         self.rect = self.image.get_rect()  # Определение прямоугольника для изображения
-        self.rect.midbottom = self.screen_rect.midbottom  # Определение центра нижней границы экрана
+        self.rect.midleft = self.screen_rect.midleft # Определение центра нижней границы экрана
         # Сохраненение вещественной координаты центра корабля в формате float, чтобы перемещение происходило плавнее.
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)

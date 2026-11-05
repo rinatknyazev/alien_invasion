@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e186c7e-f71d-4276-99bb-c6831b013e5a" name="Changes" comment="Начал создание капель">
+    <list default="true" id="7e186c7e-f71d-4276-99bb-c6831b013e5a" name="Changes" comment="1. Добавлено удаление снарядов и пришельцев при столвновении.&#10;2. Удаление всех снарядов и создание нового флота пришельцев">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alien.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alien_invasion.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien_invasion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bullet.py" beforeDir="false" afterPath="$PROJECT_DIR$/bullet.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/drop.py" beforeDir="false" afterPath="$PROJECT_DIR$/drop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ship.py" beforeDir="false" afterPath="$PROJECT_DIR$/ship.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,61 +45,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000001473535" />
-      <entry key="MS500" value="1.010806176789148" />
-      <entry key="S2" value="1.3224251425846565" />
-      <entry key="S5" value="1.6513799771794009" />
-      <entry key="S10" value="2.0401884368114134" />
-      <entry key="S30" value="5.111805736674887" />
-      <entry key="S60" value="10.166580273858143" />
-      <entry key="M2" value="17.262700348404206" />
-      <entry key="M5" value="31.40366882441964" />
-      <entry key="M10" value="50.862457619323365" />
-      <entry key="M15" value="67.32275912297176" />
-      <entry key="M30" value="98.93984098414082" />
-      <entry key="H1" value="125.68435163520577" />
-      <entry key="H2" value="143.54864271162995" />
-      <entry key="H4" value="161.0248227406235" />
-      <entry key="D1" value="551.6737342187895" />
-      <entry key="W1" value="1003.5011892642391" />
+      <entry key="MS100" value="1.0000000001504497" />
+      <entry key="MS500" value="1.0108519909297742" />
+      <entry key="S2" value="1.3524887467840134" />
+      <entry key="S5" value="1.8962668561178244" />
+      <entry key="S10" value="2.4220350172192706" />
+      <entry key="S30" value="3.8933537026876714" />
+      <entry key="S60" value="5.82412826579041" />
+      <entry key="M2" value="9.12191464237609" />
+      <entry key="M5" value="19.351710958938234" />
+      <entry key="M10" value="30.837304622170457" />
+      <entry key="M15" value="37.904305372526835" />
+      <entry key="M30" value="51.59736519347666" />
+      <entry key="H1" value="68.09312846691365" />
+      <entry key="H2" value="83.99386609568016" />
+      <entry key="H4" value="101.35898099764793" />
+      <entry key="D1" value="469.8434429002418" />
+      <entry key="W1" value="1180.4904935977024" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="2.13429204216623E-59" />
-      <entry key="MS500" value="1.844381571878444E-12" />
-      <entry key="S2" value="0.001180073898524884" />
-      <entry key="S5" value="0.08363124821308995" />
-      <entry key="S10" value="0.4386852623335909" />
-      <entry key="S30" value="1.5306518702917298" />
-      <entry key="S60" value="2.134732542293112" />
-      <entry key="M2" value="2.5453931976476696" />
-      <entry key="M5" value="3.1750983831050856" />
-      <entry key="M10" value="4.289095457604611" />
-      <entry key="M15" value="5.21688480678404" />
-      <entry key="M30" value="6.872468044114301" />
-      <entry key="H1" value="8.179479691827378" />
-      <entry key="H2" value="9.024438986188873" />
-      <entry key="H4" value="10.259783517384061" />
-      <entry key="D1" value="54.84095741746128" />
-      <entry key="W1" value="105.88547522375357" />
+      <entry key="MS100" value="4.570709369632018E-22" />
+      <entry key="MS500" value="5.395072333483205E-5" />
+      <entry key="S2" value="0.0885790658671736" />
+      <entry key="S5" value="0.47055062114060847" />
+      <entry key="S10" value="0.9220613834420208" />
+      <entry key="S30" value="1.5422577267506183" />
+      <entry key="S60" value="1.909165979619927" />
+      <entry key="M2" value="2.7758164290077256" />
+      <entry key="M5" value="6.267767090907568" />
+      <entry key="M10" value="10.518783951639087" />
+      <entry key="M15" value="13.15817560001437" />
+      <entry key="M30" value="17.7121699471661" />
+      <entry key="H1" value="22.303574095467418" />
+      <entry key="H2" value="26.3380438144352" />
+      <entry key="H4" value="29.544497504631984" />
+      <entry key="D1" value="63.646890391819916" />
+      <entry key="W1" value="136.61288965927073" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.005190178961326782" />
-      <entry key="MS500" value="0.35082114149072685" />
-      <entry key="S2" value="0.9708631934896623" />
-      <entry key="S5" value="1.5055473882315398" />
-      <entry key="S10" value="2.3006297392078148" />
-      <entry key="S30" value="6.530046030217133" />
-      <entry key="S60" value="12.22987623823858" />
-      <entry key="M2" value="19.76440565584393" />
-      <entry key="M5" value="34.54871252770539" />
-      <entry key="M10" value="55.1217405136738" />
-      <entry key="M15" value="72.50995557973133" />
-      <entry key="M30" value="105.78731429504855" />
-      <entry key="H1" value="133.84684881596843" />
-      <entry key="H2" value="152.56304955629264" />
-      <entry key="H4" value="171.27854303741216" />
-      <entry key="D1" value="606.509420566437" />
-      <entry key="W1" value="1109.3852667283309" />
+      <entry key="MS100" value="0.4569157251402128" />
+      <entry key="MS500" value="0.8626389675848879" />
+      <entry key="S2" value="1.3508685848925504" />
+      <entry key="S5" value="2.253263268697215" />
+      <entry key="S10" value="3.230709321557347" />
+      <entry key="S30" value="5.356657250735116" />
+      <entry key="S60" value="7.6772662660212365" />
+      <entry key="M2" value="11.855711161128019" />
+      <entry key="M5" value="25.578199361424183" />
+      <entry key="M10" value="41.31851360022206" />
+      <entry key="M15" value="51.030103552653124" />
+      <entry key="M30" value="69.28676432899366" />
+      <entry key="H1" value="90.38183980456884" />
+      <entry key="H2" value="110.32291082004589" />
+      <entry key="H4" value="130.89820186165935" />
+      <entry key="D1" value="533.4863193601087" />
+      <entry key="W1" value="1317.101859714144" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -230,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793654493599</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="1. Добавлено удаление снарядов и пришельцев при столвновении.&#10;2. Удаление всех снарядов и создание нового флота пришельцев">
+      <option name="closed" value="true" />
+      <created>1793788527103</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1793788527103</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +262,8 @@
     <MESSAGE value="Основной файл" />
     <MESSAGE value="Добавил мерцание звезд" />
     <MESSAGE value="Начал создание капель" />
-    <option name="LAST_COMMIT_MESSAGE" value="Начал создание капель" />
+    <MESSAGE value="1. Добавлено удаление снарядов и пришельцев при столвновении.&#10;2. Удаление всех снарядов и создание нового флота пришельцев" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. Добавлено удаление снарядов и пришельцев при столвновении.&#10;2. Удаление всех снарядов и создание нового флота пришельцев" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

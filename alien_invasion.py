@@ -84,9 +84,10 @@ class AlienInvasion:
         # Обновление позиции снарядов.
         self.bullets.update()
         for bullet in self.bullets.copy():
-            if bullet.rect.bottom <= 0:
+            if bullet.rect.right >= self.screen_rect.right:
                 self.bullets.remove(bullet)
         self._check_bullet_alien_collisions()
+
     def _check_bullet_alien_collisions(self):
         """Обработка коллизий снарядов с пришельцами"""
         # Удаление снарядов и пришельцев, участвующих в коллизиях.
@@ -97,50 +98,51 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
 
-
     def _create_fleet(self):
         """рассчитывает ширину, свободное место и запускает цикл."""
         alien_test = Alien(self)  # Создание ТЕСТОВОГО экземпляра
         alien_width, alien_height = alien_test.rect.size  # Ширина пришельца
-        available_space_x = self.settings.screen_width - (2 * alien_width)  # Вычисление доступного расстояния
+        available_space_x = self.screen_rect.width - self.ship.rect.width -3 *alien_width  # Вычисление доступного расстояния
         number_aliens_x = available_space_x // (2 * alien_width)  # Кол-во пришельцев
         """Определяет количество рядов, помещающися на экране"""
-        ship_height = self.ship.rect.height  # Высота корабля
+        ship_width = self.ship.rect.width  # Ширина корабля
         # Свободное пространство (кол-во пикселей)
-        availabe_space_y = self.settings.screen_height - (3 * alien_height) - ship_height
+        availabe_space_y = self.screen_rect.height - alien_height
         # Количество рядов
         number_rows = availabe_space_y // (2 * alien_height)
         # Создание флота вторжения.
         for row_number in range(number_rows):  # Перебираем список пришельцев(кол-во)
             for alien_number in range(number_aliens_x):
-                self._create_alien(alien_number, row_number)
+                self._create_alien(alien_number,row_number)
 
-    def _create_alien(self, alien_number, row_number):
+    def _create_alien(self, alien_number,row_number):
         """только за создание одного пришельца и добавление его в группу"""
         alien = Alien(self)  # Создание боевого пришельца
         alien_width, alien_height = alien.rect.size  # узнаем его габариты
-        alien.rect.x = alien_width + (2 * alien_width * alien_number)
-        alien.x = float(alien.rect.x)
-        alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+        # Расставляем пришельцев справа - налево с шагом в две ширины
+        alien.rect.right = self.screen_rect.right - 2 * alien_width * alien_number
+        alien.rect.y = alien_height + 2 * alien_height * row_number
+
+        alien.y = float(alien.rect.y)
         self.aliens.add(alien)
 
     def _create_drops(self):
         """Запускает цикл"""
         drop = Drop(self)  # Создание тестовой капли чтобы узнать е размеры
         drop_width, drop_height = drop.rect.size
-        next_drop_x = drop_width + (randint(1, 50))
-        while next_drop_x + drop_width <= self.screen_rect.right:
+        next_drop_y = drop_height + (randint(1, 50))
+        while next_drop_y + drop_height <= self.screen_rect.bottom:
             drop = Drop(self)
-            drop.rect.x = next_drop_x
+            drop.rect.y = next_drop_y
             self.drops.add(drop)
-            next_drop_x += drop_width + (randint(1, 50))
+            next_drop_y += drop_height + (randint(1, 50))
 
     def _update_drops(self):
         self.drops.update()
         for drop in self.drops:
-            if drop.rect.top >= self.screen_rect.bottom:
-                drop.rect.bottom = self.screen_rect.top
-                drop.y = float(drop.rect.y)
+            if drop.rect.right <= self.screen_rect.left:
+                drop.rect.left = self.screen_rect.right
+                drop.x = float(drop.rect.x)
                 drop.speed = randint(1, 2)
 
     def _update_aliens(self):
@@ -158,7 +160,7 @@ class AlienInvasion:
     def _change_fleet_direction(self):
         """Опускает весь флот и меняте направление флота."""
         for alien in self.aliens.sprites():
-            alien.rect.y += self.settings.fleet_drop_speed
+            alien.rect.x -= self.settings.fleet_drop_speed
         self.settings.fleet_direction *= -1
 
     def _create_star_sky(self):
