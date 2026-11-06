@@ -28,10 +28,10 @@ class AlienInvasion:
         self.stats = GameStats(self)
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
-        self.aliens = pygame.sprite.Group()
+        # self.aliens = pygame.sprite.Group()
         self.stars = pygame.sprite.Group()
         self.drops = pygame.sprite.Group()
-        self._create_fleet()
+        # self._create_fleet()
         self._create_star_sky()
         self._create_drops()
         self.play_button = Button(self, 'Play')
@@ -44,7 +44,7 @@ class AlienInvasion:
                 self._update_ship()
                 self._update_bullets()
                 self.stars.update()
-                self._update_aliens()
+                # self._update_aliens()
                 self._update_drops()
             self._update_screen()
 
@@ -52,12 +52,12 @@ class AlienInvasion:
         self.stats.reset_stats()
         self.stats.game_active = True
         # Очистка списков пришельцев и снарядов.
-        self.aliens.empty()
-        self.bullets.empty()
+        # self.aliens.empty()
+        # self.bullets.empty()
         self.stars.empty()
         self.drops.empty()
         # Создание нового флота и размещение корабля в центре левого края
-        self._create_fleet()
+        # self._create_fleet()
         self.ship.center_ship()
         self._create_star_sky()
         self._create_drops()
@@ -125,12 +125,12 @@ class AlienInvasion:
     def _check_bullet_alien_collisions(self):
         """Обработка коллизий снарядов с пришельцами"""
         # Удаление снарядов и пришельцев, участвующих в коллизиях.
-        collisions = pygame.sprite.groupcollide(
-            self.bullets, self.aliens, True, True)
-        if not self.aliens:
-            # Уничтожение существующих снарядов и создание нового флота
-            self.bullets.empty()
-            self._create_fleet()
+        # collisions = pygame.sprite.groupcollide(
+        #     self.bullets, self.aliens, True, True)
+        # if not self.aliens:
+        #     Уничтожение существующих снарядов и создание нового флота
+            # self.bullets.empty()
+            # self._create_fleet()
 
     def _create_fleet(self):
         """рассчитывает ширину, свободное место и запускает цикл."""
@@ -266,7 +266,7 @@ class AlienInvasion:
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
-        self.aliens.draw(self.screen)
+        # self.aliens.draw(self.screen)
         # Кнопка Play отображается в том случае, если игра неактивна
         if not self.stats.game_active:
             self.play_button.draw_button()
