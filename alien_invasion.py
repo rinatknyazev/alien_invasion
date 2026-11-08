@@ -12,6 +12,7 @@ from drop import Drop
 from time import sleep
 from game_stats import GameStats
 from button import Button
+from target import Target
 
 
 class AlienInvasion:
@@ -27,6 +28,7 @@ class AlienInvasion:
         # Создание экземпляра для хранения игровой статистики
         self.stats = GameStats(self)
         self.ship = Ship(self)
+        self.target = Target(self)
         self.bullets = pygame.sprite.Group()
         # self.aliens = pygame.sprite.Group()
         self.stars = pygame.sprite.Group()
@@ -42,33 +44,12 @@ class AlienInvasion:
             self._check_events()
             if self.stats.game_active:
                 self._update_ship()
+                self._update_target()
                 self._update_bullets()
                 self.stars.update()
                 # self._update_aliens()
                 self._update_drops()
             self._update_screen()
-
-    def start_game(self):
-        self.stats.reset_stats()
-        self.stats.game_active = True
-        # Очистка списков пришельцев и снарядов.
-        # self.aliens.empty()
-        # self.bullets.empty()
-        self.stars.empty()
-        self.drops.empty()
-        # Создание нового флота и размещение корабля в центре левого края
-        # self._create_fleet()
-        self.ship.center_ship()
-        self._create_star_sky()
-        self._create_drops()
-        # Указатель мыши скрыватся.
-        pygame.mouse.set_visible(False)
-
-    def _check_play_button(self, mouse_pos):
-        """Запускает новую игру при нажатии Play"""
-        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
-        if button_clicked and not self.stats.game_active:
-            self.start_game()
 
     def _check_events(self):
         # Отслеживание событий клавиатуры и мыши.
@@ -104,14 +85,65 @@ class AlienInvasion:
                 mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
 
+    def _check_play_button(self, mouse_pos):
+        """Запускает новую игру при нажатии Play"""
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.stats.game_active:
+            self.start_game()
+
+    def start_game(self):
+        self.stats.reset_stats()
+        self.stats.game_active = True
+        # Очистка списков пришельцев и снарядов.
+        # self.aliens.empty()
+        # self.bullets.empty()
+        self.stars.empty()
+        self.drops.empty()
+        # Создание нового флота и размещение корабля в центре левого края
+        # self._create_fleet()
+        self.ship.center_ship()
+        self.target.center_target()
+        self._create_star_sky()
+        self._create_drops()
+        # Указатель мыши скрыватся.
+        pygame.mouse.set_visible(False)
+
+    def _update_ship(self):
+        self.ship.update()
+
+    def _ship_hit(self):
+        """Обрабатывает столкновение корабля с пришельцем."""
+        if self.stats.ships_left > 0:
+            # Уменьшение ships_left.
+            self.stats.ships_left -= 1
+
+            # Очистка списков пришельцев и снарядов.
+            self.aliens.empty()
+            self.bullets.empty()
+
+            # Создание нового флота и размещение корабля в центре.
+            self._create_fleet()
+            self.ship.center_ship()
+
+            # Пауза
+            sleep(1)
+        else:
+            self.stats.game_active = False
+            pygame.mouse.set_visible(True)
+
+    def _update_target(self):
+        self._check_target()
+        self.target.update()
+
+    def _check_target(self):
+        if self.target.check_edges():
+            self.settings.target_direction *= -1
+
     def _fire_bullet(self):
         """Создание нового снаряда и выключение в группу bullets"""
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
-
-    def _update_ship(self):
-        self.ship.update()
 
     def _update_bullets(self):
         """Обновляет позиции снарядов и уничтожает старые снаряды"""
@@ -129,8 +161,8 @@ class AlienInvasion:
         #     self.bullets, self.aliens, True, True)
         # if not self.aliens:
         #     Уничтожение существующих снарядов и создание нового флота
-            # self.bullets.empty()
-            # self._create_fleet()
+        # self.bullets.empty()
+        # self._create_fleet()
 
     def _create_fleet(self):
         """рассчитывает ширину, свободное место и запускает цикл."""
@@ -159,25 +191,6 @@ class AlienInvasion:
 
         alien.y = float(alien.rect.y)
         self.aliens.add(alien)
-
-    def _create_drops(self):
-        """Запускает цикл"""
-        drop = Drop(self)  # Создание тестовой капли чтобы узнать е размеры
-        drop_width, drop_height = drop.rect.size
-        next_drop_y = drop_height + (randint(1, 50))
-        while next_drop_y + drop_height <= self.screen_rect.bottom:
-            drop = Drop(self)
-            drop.rect.y = next_drop_y
-            self.drops.add(drop)
-            next_drop_y += drop_height + (randint(1, 50))
-
-    def _update_drops(self):
-        self.drops.update()
-        for drop in self.drops:
-            if drop.rect.right <= self.screen_rect.left:
-                drop.rect.left = self.screen_rect.right
-                drop.x = float(drop.rect.x)
-                drop.speed = randint(1, 2)
 
     def _update_aliens(self):
         """Обновляет позиции всех пришельцев во флоте"""
@@ -211,25 +224,24 @@ class AlienInvasion:
                 self._ship_hit()
                 break
 
-    def _ship_hit(self):
-        """Обрабатывает столкновение корабля с пришельцем."""
-        if self.stats.ships_left > 0:
-            # Уменьшение ships_left.
-            self.stats.ships_left -= 1
+    def _create_drops(self):
+        """Запускает цикл"""
+        drop = Drop(self)  # Создание тестовой капли чтобы узнать е размеры
+        drop_width, drop_height = drop.rect.size
+        next_drop_y = drop_height + (randint(1, 50))
+        while next_drop_y + drop_height <= self.screen_rect.bottom:
+            drop = Drop(self)
+            drop.rect.y = next_drop_y
+            self.drops.add(drop)
+            next_drop_y += drop_height + (randint(1, 50))
 
-            # Очистка списков пришельцев и снарядов.
-            self.aliens.empty()
-            self.bullets.empty()
-
-            # Создание нового флота и размещение корабля в центре.
-            self._create_fleet()
-            self.ship.center_ship()
-
-            # Пауза
-            sleep(1)
-        else:
-            self.stats.game_active = False
-            pygame.mouse.set_visible(True)
+    def _update_drops(self):
+        self.drops.update()
+        for drop in self.drops:
+            if drop.rect.right <= self.screen_rect.left:
+                drop.rect.left = self.screen_rect.right
+                drop.x = float(drop.rect.x)
+                drop.speed = randint(1, 2)
 
     def _create_star_sky(self):
         star_test = Star(self)  # Тестовая звезд, чтобы узнать размеры.
@@ -260,6 +272,7 @@ class AlienInvasion:
         # При каждом проходе цикла перерисовывается экран.
         self.screen.fill(self.settings.bg_color)
         self.stars.draw(self.screen)
+        pygame.draw.rect(self.screen,self.target.color,self.target.rect)
         for drop in self.drops:
             drop.draw_trasser()
         self.drops.draw(self.screen)

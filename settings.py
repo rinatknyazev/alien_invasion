@@ -28,3 +28,9 @@ class Settings():
         self.bullet_width = 15
         self.bullet_height = 2
         self.bullet_color = (255, 255, 255)
+        # Параметры платформы
+        self.target_width = 20 # Ширина
+        self.target_height = 100 # Высота
+        self.target_speed = 1 # Скорость
+        self.target_direction = 1
+        self.target_color = (255,255,255) # Цвет
